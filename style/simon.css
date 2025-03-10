@@ -1,0 +1,41 @@
+#dataContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow: hidden;
+    height: 9   0vh;
+}
+
+#onTimePlot {
+    flex: 1;
+    width: 70%;
+}
+
+#songsList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.song {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: row;
+}
+
+.song:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.song>div {
+    margin-left: 10px;
+}
+
+.song p:nth-of-type(2){
+    color: #949494;
+}
