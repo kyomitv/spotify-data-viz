@@ -1,6 +1,13 @@
 import downloadData from "./downloadData.js";
 import unpack from "./unpack.js";
 
+
+import graphmap from "./map.js";
+
+import getTrack from "./api/getTrack.js";
+
+import { graphOnTime, getUniqueSongs } from "./simon.js";
+
 function maxence(rows) {
     var frames = [];
     var x = unpack(rows, 'snapshot_date');
@@ -91,6 +98,9 @@ function maxence(rows) {
     });
 }
 
+
+
+
 async function main() {
     let startTime = new Date();
     const data = await downloadData("data/spotify_data.csv");
@@ -102,6 +112,39 @@ async function main() {
     })
     filteredData.sort((a, b) => a.date - b.date);
     maxence(filteredData);
+
+  console.log(data, `Data downloaded in ${new Date() - startTime} ms`);
+
+
+  graphmap(
+    data.filter(
+      (row) =>
+        row.artists.includes("Bruno Mars") &&
+        row.name.includes("Die With A Smile") &&
+        row.snapshot_date.includes("2024-11-03")
+    )
+  );
+
+  const track = await getTrack(data[0].spotify_id);
+  console.log(track);
+
+  graphOnTime(data.filter((row) => row.artists.includes("Bruno Mars")));
+
+  const songs = getUniqueSongs(
+    data.filter((row) => row.artists.includes("Bruno Mars"))
+  );
+  console.log(songs);
+  songs.forEach(async (song) => {
+    const track = await getTrack(song.spotify_id);
+    document.getElementById(
+      "songsList"
+    ).innerHTML += `<div id="${song.spotify_id}" class="song"><img src="${track.album.images[2].url}" alt="${song.name}"><div><p>${song.name}</p><p>${song.artists}</p></div></div>`;
+
+    document.getElementById().addEventListener("click", () => {
+      graphOnTime(data.filter((row) => row.spotify_id === song.spotify_id));
+    });
+  });
+
 }
 
 main();
