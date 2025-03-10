@@ -42,6 +42,7 @@ export function graphOnTime(rows) {
     yaxis: { title: "Average Popularity" },
     width: 700,
     height: 400,
+    template: "plotly_dark", // Utilise le thème sombre
   };
 
   Plotly.newPlot(document.getElementById("onTimePlot"), data, layout);
