@@ -71,8 +71,8 @@ export function barChart(rows) {
   console.log(rows);
   var trace1 = {
     x: rows.map((row) => row.name),
-    y: rows.map((row) => row.instrumentalness * 100),
-    name: "Instrumentalness",
+    y: rows.map((row) => row.tempo),
+    name: "Tempo",
     type: "bar",
   };
 
@@ -83,7 +83,14 @@ export function barChart(rows) {
     type: "bar",
   };
 
-  var data = [trace1, trace2];
+  var trace3 = {
+    x: rows.map((row) => row.name),
+    y: rows.map((row) => row.valence * 100),
+    name: "Valence",
+    type: "bar",
+  };
+
+  var data = [trace1, trace2, trace3];
 
   var layout = { barmode: "group" };
 
