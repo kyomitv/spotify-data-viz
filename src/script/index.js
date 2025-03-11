@@ -177,6 +177,11 @@ async function main() {
     );
   });
   getdate(data.filter((row) => row.artists.includes("Bruno Mars")));
-  barChart(songs);
+  barChart(
+    getUniqueSongs(
+      data.filter((row) => row.artists.includes("Bruno Mars")),
+      true
+    )
+  );
 }
 main();

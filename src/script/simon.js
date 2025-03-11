@@ -36,7 +36,7 @@ export function graphOnTime(rows, title) {
       color: "white", // Couleur des lignes
     },
     marker: {
-      color: "white", // Couleur des points
+      color: "#1DB954", // Couleur des points
     },
     textfont: {
       color: "white", // Couleur du texte
@@ -69,35 +69,52 @@ export function graphOnTime(rows, title) {
 
 export function barChart(rows) {
   console.log(rows);
+
   var trace1 = {
     x: rows.map((row) => row.name),
-    y: rows.map((row) => row.tempo),
-    name: "Tempo",
+    y: rows.map((row) => row.valence * 100),
+    name: "Gaiété",
     type: "bar",
+    marker: { color: "white" }, // Couleur des barres
   };
 
   var trace2 = {
     x: rows.map((row) => row.name),
     y: rows.map((row) => row.danceability * 100),
-    name: "Danceability",
+    name: "Dansabilité",
     type: "bar",
+    marker: {
+      color: "#1DB954A2",
+      line: {
+        color: "#1DB954",
+        width: 1.5,
+      },
+    }, // Couleur des barres
   };
 
-  var trace3 = {
-    x: rows.map((row) => row.name),
-    y: rows.map((row) => row.valence * 100),
-    name: "Valence",
-    type: "bar",
+  var data = [trace1, trace2];
+
+  var layout = {
+    xaxis: { showgrid: false, fixedrange: true },
+    yaxis: { fixedrange: true, range: [0, 100] },
+    width: 900,
+    height: 500,
+    barmode: "group",
+    plot_bgcolor: "rgba(0,0,0,0)", // Couleur de fond du graphique
+    paper_bgcolor: "rgba(0,0,0,0)", // Couleur de fond de la zone autour du graphique
+    font: {
+      color: "white", // Couleur du texte
+    },
   };
 
-  var data = [trace1, trace2, trace3];
+  var config = {
+    displayModeBar: false, // Masquer la barre d'outils
+  };
 
-  var layout = { barmode: "group" };
-
-  Plotly.newPlot(document.getElementById("barGraph"), data, layout);
+  Plotly.newPlot(document.getElementById("barGraph"), data, layout, config);
 }
 
-export function getUniqueSongs(rows) {
+export function getUniqueSongs(rows, force = false) {
   const songs = [];
   const songMonths = {};
 
@@ -120,6 +137,9 @@ export function getUniqueSongs(rows) {
       !songs.find((song) => song.spotify_id === row.spotify_id) &&
       songMonths[row.spotify_id].size >= 2
     ) {
+      if (force && songs.find((song) => song.name === row.name)) {
+        return;
+      }
       songs.push(row);
     }
   });
