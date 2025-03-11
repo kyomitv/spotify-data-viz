@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="style/global.css" />
     <link rel="stylesheet" href="style/simon.css" />
+    <link rel="stylesheet" href="style/maxence.css" />
 
     <script src="src/dependancies/d3.min.js" defer></script>
     <script src="src/dependancies/plotly-2.14.0.min.js" defer></script>
@@ -18,6 +19,7 @@
 </head>
 
 <body>
+
     <h3 style="position: fixed; top: 10px; left: 20px; color: #1DB954; z-index: 1; font-size: 20px;">Spotify</h3>
     <section class="first-page">
         <h1>BRUNO</h1><h1>MARS</h1>
@@ -26,12 +28,38 @@
         
     </section>
 
-    <section id="maxence">
-      <div id="myDiv" style="width: 50%; height: 50%"></div>
-      <select id="choixChanson"></select>
-      <p class="signNom">Maxence</p>
+   <section id="maxence">
+        <h2>Rang de Popularité de chaque chanson sélectionnée</h2>
+        <div class="description">
+            <div>
+                <div class="select-container">
+                    <select id="choixChanson">
+                         
+                    </select>
+                </div>
+        <div id="myDiv" style="margin-top: 0px;"></div>
+        
+            
+        </div>
+            <p>Ce graphique, intitulé "Rang de Popularité de chaque chanson sélectionnée", présente l'évolution du classement de popularité d'une chanson 
+                sur une période allant de novembre 2023 à novembre 2024. L'axe des abscisses (horizontal) représente le temps, segmenté par mois, tandis 
+                que l'axe des ordonnées (vertical) indique le rang de popularité, allant de 10 à 50, où un rang plus bas signifie une popularité plus élevée.
+                La ligne du graphique montre les fluctuations du rang de la chanson au fil du temps. Initialement, en novembre 2023, la chanson commence avec 
+                un rang autour de 40. On observe une amélioration progressive de sa popularité jusqu'en mars 2024, où elle atteint son pic, approchant un rang de 10. 
+                Cependant, après ce pic, la popularité de la chanson décline rapidement, retombant à un rang proche de 40 vers juillet 2024. Par la suite, le rang fluctue
+                légèrement mais reste globalement stable autour de 40 jusqu'à la fin de la période observée.
+                Les boutons "Play" et "Pause" en bas du graphique suggèrent que l'utilisateur peut animer le graphique pour visualiser dynamiquement les changements 
+                de popularité au fil du temps. Ce type de visualisation est utile pour analyser les tendances de popularité et identifier les périodes de hausse ou de 
+                baisse dans l'intérêt pour une chanson spécifique.</p>
+       </div>
+        <p class="signNom">Maxence</p>
     </section>
-
+    
+    <section id="Thibault">
+        <h2>Classement Die With A Smile selon les pays le </h2>
+        <select id="choixdate"></select>
+        <div id="map">
+        </div>
     <section id="Thibault">
       <h2>Classement Die With A Smile selon les pays le</h2>
       <input

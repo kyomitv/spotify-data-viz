@@ -1,0 +1,65 @@
+/* Style pour le select */
+#choixChanson {
+    width: 220px; /* Largeur légèrement augmentée */
+    padding: 12px; /* Plus d'espace à l'intérieur */
+    font-size: 18px; /* Taille de la police augmentée pour une meilleure lisibilité */
+    border: 2px solid #ddd; /* Bordure plus claire */
+    border-radius: 8px; /* Coins plus arrondis */
+    background-color:transparent; /* Fond blanc pour un meilleur contraste */
+    color: #ffffff; /* Couleur du texte */
+    appearance: none; /* Supprime le style par défaut */
+    -webkit-appearance: none; /* Pour les navigateurs WebKit */
+    -moz-appearance: none; /* Pour Firefox */
+    cursor: pointer; /* Change le curseur au survol */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition douce */
+    margin-top: auto;
+}
+
+/* Style pour le select au survol */
+#choixChanson:hover {
+    border-color: #ffffff; /* Couleur de la bordure au survol */
+}
+
+/* Style pour le select au focus */
+#choixChanson:focus {
+    border-color: #ffffff; /* Couleur de la bordure au focus */
+    outline: none; /* Supprime le contour par défaut */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Ombre pour un effet de focus */
+}
+
+#choixChanson option:not(:checked) {
+    background-color: rgb(21, 21, 27); /* Couleur du texte des options */
+    color:rgb(255, 255, 255)
+}
+
+#choixChanson option:checked {
+    background-color: rgb(255, 255, 255); /* Couleur du texte des options */
+    color:rgb(21, 21, 27)
+}
+
+#choixChanson option:checked:hover {
+    background-color: rgb(255, 255, 255); /* Couleur du texte des options */
+    color:rgb(21, 21, 27)
+}
+
+.pause-button {
+    background-color: white; /* Couleur par défaut */
+    color: black; /* Couleur du texte */
+    border: 1px solid black; /* Bordure */
+    padding: 5px 10px; /* Espacement interne */
+    cursor: pointer; /* Curseur de la main */
+    transition: background-color 0.3s; /* Transition douce pour le survol */
+}
+
+.pause-button:hover {
+    background-color: red; /* Couleur de survol */
+    color: white; /* Couleur du texte sur le survol */
+}
+
+.description {
+    display: flex; /* Permet au texte de prendre l'espace restant */
+   flex-flow: row nowrap;
+   justify-content: center;
+   align-items: center;
+   text-align: justify;
+}
