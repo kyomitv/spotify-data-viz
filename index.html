@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spotify Data Viz</title>
@@ -13,46 +12,46 @@
     <script src="src/dependancies/plotly-2.14.0.min.js" defer></script>
 
     <script src="src/script/index.js" type="module"></script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <section id="maxence">
-        <div id="myDiv" style="width:50%;height:50%"></div>
-        <select id="choixChanson"></select>
-        <p class="signNom">Maxence</p>
-
+      <div id="myDiv" style="width: 50%; height: 50%"></div>
+      <select id="choixChanson"></select>
+      <p class="signNom">Maxence</p>
     </section>
 
     <section id="Thibault">
-        <h2>Classement Die With A Smile selon les pays le </h2>
-        <select id="choixdate"></select>
-        <div id="map">
-        </div>
+      <h2>Classement Die With A Smile selon les pays le</h2>
+      <input
+        type="date"
+        min="2023-10-18"
+        max="2024-10-18"
+        id="choixdate"
+        value="2024-10-18"
+      />
+      <div id="map"></div>
 
-        <p class="signNom">Thibault</p>
-
+      <p class="signNom">Thibault</p>
     </section>
 
     <section id="simon">
-        <h2>Courbes de Popularité de Bruno Mars</h2>
-        <div id="dataContainer">
-            <div id="onTimePlot"></div>
-            <div id="songsList">
-                <div class="song">Tous</div>
-            </div>
+      <h2>Courbes de Popularité de Bruno Mars</h2>
+      <div id="dataContainer">
+        <div id="onTimePlot"></div>
+        <div id="songsList">
+          <div class="song">Tous</div>
         </div>
-        <p class="signNom">Simon</p>
+      </div>
+      <p class="signNom">Simon</p>
     </section>
 
     <section id="simon2">
-        <h2>Courbes de Popularité de Bruno Mars</h2>
-        <div id="dataContainer">
-            <div id="barGraph"></div>
-        </div>
-        <p class="signNom">Simon</p>
+      <h2>Courbes de Popularité de Bruno Mars</h2>
+      <div id="dataContainer">
+        <div id="barGraph"></div>
+      </div>
+      <p class="signNom">Simon</p>
     </section>
-
-</body>
-
+  </body>
 </html>
