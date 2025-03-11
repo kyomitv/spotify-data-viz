@@ -1,9 +1,10 @@
-#dataContainer {
+.dataContainer {
   display: flex;
   flex-direction: row;
   gap: 10px;
   overflow: hidden;
   justify-content: center;
+  align-items: center;  
 }
 
 #onTimePlot {
@@ -19,6 +20,7 @@
   overflow-y: auto;
   padding-right: 5px;
 }
+
 
 #songsList::-webkit-scrollbar {
   width: 10px;
@@ -50,7 +52,8 @@
 }
 
 .song:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #1DB95421;
+  border: 1px solid #1DB954;  
 }
 
 .song > div {

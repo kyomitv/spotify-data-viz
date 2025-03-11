@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spotify Data Viz</title>
+    <title>Bruno Mars - Spotify</title>
 
     <link rel="stylesheet" href="style/global.css" />
     <link rel="stylesheet" href="style/simon.css" />
@@ -14,11 +13,22 @@
     <script src="src/dependancies/plotly-2.14.0.min.js" defer></script>
 
     <script src="src/script/index.js" type="module"></script>
+ 
+    <link rel="icon" href="images/Spotify_Primary_Logo_RGB_White.png" />
 
 </head>
 
 <body>
-    <section id="maxence">
+
+    <h3 style="position: fixed; top: 10px; left: 20px; color: #1DB954; z-index: 1; font-size: 20px;">Spotify</h3>
+    <section class="first-page">
+        <h1>BRUNO</h1><h1>MARS</h1>
+        <p style="position: absolute; bottom: 10px; right: 20px; z-index: 1;">PETILLOT Maxence • NONNOTTE Thibault • POITRAT-BOUCHET Simon</p>
+        <div class="image-container"><img src="images/bruno.png"/></div> 
+        
+    </section>
+
+   <section id="maxence">
         <h2>Rang de Popularité de chaque chanson sélectionnée</h2>
         <div class="description">
             <div>
@@ -51,34 +61,42 @@
         <div id="map">
         </div>
     <section id="Thibault">
-        <h2>Classement Die With A Smile selon les pays le </h2>
-        <select id="choixdate"></select>
-        <div id="map">
-        </div>
+      <h2>Classement Die With A Smile selon les pays le</h2>
+      <input
+        type="date"
+        min="2023-10-18"
+        max="2024-10-18"
+        id="choixdate"
+        value="2024-10-18"
+      />
+      <div id="map"></div>
 
-        <p class="signNom">Thibault</p>
-
+      <p class="signNom">Thibault</p>
     </section>
 
     <section id="simon">
-        <h2>Courbes de Popularité de Bruno Mars</h2>
-        <div id="dataContainer">
+
+        <h2>Courbes de Popularité</h2>
+        <div class="dataContainer">
             <div id="onTimePlot"></div>
             <div id="songsList">
                 <div class="song">Tous</div>
             </div>
+
         </div>
-        <p class="signNom">Simon</p>
+      </div>
+      <p class="signNom">Simon</p>
     </section>
 
     <section id="simon2">
-        <h2>Courbes de Popularité de Bruno Mars</h2>
-        <div id="dataContainer">
+
+        <h2>Rapport Gaiété/Dansabilté des musiques</h2>
+        <div class="dataContainer">
             <div id="barGraph"></div>
+            <p style="padding-right: 10px;">La dansabilité des chansons de Bruno Mars semblerait être liée au niveau de gaiété de la musique. Plus la gaiété est haute, plus la dansabilité est haute. Toutefois, il y a des exceptions. Notamment pour <i><b>Talking to the moon</b></i> dont la dansabilité semble particulièrement élevée par rapport à la gaiété de la musique.</p>
         </div>
         <p class="signNom">Simon</p>
+
     </section>
-
-</body>
-
+  </body>
 </html>

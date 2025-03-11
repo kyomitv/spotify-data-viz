@@ -3,9 +3,12 @@ import unpack from "./unpack.js";
 import listeChanson from "./listeChanson.js";
 import { graphmap, getdate } from "./map.js";
 import getTrack from "./api/getTrack.js";
-import { graphOnTime, getUniqueSongs } from "./simon.js";
+
 import {maxence} from "./maxence.js";
 
+import { graphOnTime, getUniqueSongs, barChart } from "./simon.js";
+
+const selection = document.getElementById("choixdate");
 
 
 async function main() {
@@ -31,7 +34,14 @@ async function main() {
 
     maxence(data.filter((row) => row.artists.includes("Bruno Mars")));
 
+
     console.log(data, `Data downloaded in ${new Date() - startTime} ms`);
+
+  graphmap(data, "2024-11-03");
+  selection.addEventListener("change", () => {
+    graphmap(data, selection.value);
+  });
+
 
     graphmap(
         data.filter(
@@ -68,9 +78,26 @@ async function main() {
                 }
             });
         });
-    });
 
-    getdate(data.filter((row) => row.artists.includes("Bruno Mars")));
+      },
+      window.localStorage.getItem(song.spotify_id) ? 0 : k * 1100
+    );
+  });
+
+  const datas = await downloadData("data/spotify_data.csv");
+  const uniqueDate = getdate(data);
+  uniqueDate.forEach((date) => {
+    selection.innerHTML += `<option value="${date}">${date}</option>`;
+  });
+
+  getdate(data.filter((row) => row.artists.includes("Bruno Mars")));
+  barChart(
+    getUniqueSongs(
+      data.filter((row) => row.artists.includes("Bruno Mars")),
+      true
+    )
+  );
+
 }
 
 main();
