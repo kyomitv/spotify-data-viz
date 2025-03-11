@@ -3,12 +3,11 @@
   flex-direction: row;
   gap: 10px;
   overflow: hidden;
-  height: 9 0vh;
+  justify-content: center;
 }
 
 #onTimePlot {
-  flex: 1;
-  width: 70%;
+  width: fit-content;
 }
 
 #songsList {
@@ -16,8 +15,26 @@
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 500px;
   overflow-y: auto;
+  padding-right: 5px;
+}
+
+#songsList::-webkit-scrollbar {
+  width: 10px;
+}
+
+#songsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#songsList::-webkit-scrollbar-thumb {
+  background: rgba(179, 179, 179, 0.275);
+  border-radius: 5px;
+}
+
+#songsList::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .song {

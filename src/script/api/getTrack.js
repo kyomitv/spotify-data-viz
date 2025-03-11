@@ -5,6 +5,7 @@ export default async function getTrack(trackId) {
     return JSON.parse(window.localStorage.getItem(trackId));
 
   const token = (await getToken()).access_token;
+
   const res = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -16,6 +17,10 @@ export default async function getTrack(trackId) {
     return;
   }
 
+  if (res.status !== 200) {
+    console.log("Error: " + res.status);
+    return;
+  }
   window.localStorage.setItem(trackId, JSON.stringify(await res.json()));
   return await res.json();
 }

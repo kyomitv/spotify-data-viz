@@ -5,8 +5,7 @@ import listeChanson from "./listeChanson.js";
 import { graphmap, getdate } from "./map.js";
 
 import getTrack from "./api/getTrack.js";
-
-import { graphOnTime, getUniqueSongs } from "./simon.js";
+import { graphOnTime, getUniqueSongs, barChart } from "./simon.js";
 
 function maxence(rows) {
   var frames = [];
@@ -137,33 +136,47 @@ async function main() {
     )
   );
 
-  const track = await getTrack(data[0].spotify_id);
-  console.log(track);
-
+  //SIMON
   graphOnTime(data.filter((row) => row.artists.includes("Bruno Mars")));
 
   const songs = getUniqueSongs(
     data.filter((row) => row.artists.includes("Bruno Mars"))
   );
-  console.log(songs);
+  songs.forEach(async (song, k) => {
+    setTimeout(
+      async () => {
+        const track = await getTrack(song.spotify_id);
 
-  //SIMON
-  songs.forEach(async (song) => {
-    //const track = await getTrack(song.spotify_id);
-    document.getElementById(
-      "songsList"
-    ).innerHTML += `<div id="${song.spotify_id}" class="song"><img src="${track?.album.images[2].url}" ><div><p>${song.name}</p><p>${song.artists}</p></div></div>`;
+        // console.log(track);
 
-    document.querySelectorAll(".song").forEach((song) => {
-      song.addEventListener("click", async () => {
-        if (song.id) {
-          graphOnTime(data.filter((row) => row.spotify_id === song.id));
-        } else {
-          graphOnTime(data.filter((row) => row.artists.includes("Bruno Mars")));
-        }
-      });
-    });
+        document.getElementById("songsList").innerHTML += `<div id="${
+          song.spotify_id
+        }" class="song"><img src="${
+          track?.album.images[2].url || ""
+        }" ><div><p>${song.name}</p><p>${song.artists}</p></div></div>`;
+
+        document.querySelectorAll(".song").forEach((song) => {
+          song.addEventListener("click", async () => {
+            if (song.id) {
+              graphOnTime(
+                data.filter((row) => row.spotify_id === song.id),
+                `${
+                  data.filter((row) => row.spotify_id === song.id)[0].name
+                } - Popularité moyenne par mois`
+              );
+            } else {
+              graphOnTime(
+                data.filter((row) => row.artists.includes("Bruno Mars")),
+                `Bruno Mars - Popularité moyenne par mois`
+              );
+            }
+          });
+        });
+      },
+      window.localStorage.getItem(song.spotify_id) ? 0 : k * 1100
+    );
   });
   getdate(data.filter((row) => row.artists.includes("Bruno Mars")));
+  barChart(songs);
 }
 main();

@@ -23,10 +23,19 @@ section {
   height: 100vh;
   scroll-snap-align: start;
   padding: 20px;
+  position: relative;
 }
 
 section h2 {
   font-size: 30px;
   text-align: center;
   margin: 20px auto;
+}
+
+
+.signNom{
+  position: absolute;
+  font-style: italic;
+  bottom: 20px;
+  right: 20px;
 }
