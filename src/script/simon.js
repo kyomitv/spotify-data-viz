@@ -68,8 +68,6 @@ export function graphOnTime(rows, title) {
 }
 
 export function barChart(rows) {
-  console.log(rows);
-
   var trace1 = {
     x: rows.map((row) => row.name),
     y: rows.map((row) => row.valence * 100),

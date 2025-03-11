@@ -13,11 +13,9 @@ const selection = document.getElementById("choixdate");
 async function main() {
   let startTime = new Date();
   const data = await downloadData("data/spotify_data.csv");
-  console.log(data, `Data downloaded in ${new Date() - startTime} ms`);
 
   //MAXENce
   const uniqueSongs = listeChanson(data);
-  console.log(uniqueSongs);
   const selector = document.getElementById("choixChanson");
   uniqueSongs.forEach((song) => {
     selector.innerHTML += `<option value="${song}">${song}</option>`;
@@ -51,7 +49,6 @@ async function main() {
   const songs = getUniqueSongs(
     data.filter((row) => row.artists.includes("Bruno Mars"))
   );
-  console.log(songs);
 
   songs.forEach((song) => {
     setTimeout(

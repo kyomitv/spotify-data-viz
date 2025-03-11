@@ -10,7 +10,6 @@ export function graphmap(rows, date) {
       row.snapshot_date.includes(date)
   );
 
-  console.log(unpack(rows, "daily_rank"));
   const data = [
     {
       type: "choropleth",
