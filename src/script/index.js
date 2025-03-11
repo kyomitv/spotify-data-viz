@@ -174,12 +174,19 @@ async function main() {
       window.localStorage.getItem(song.spotify_id) ? 0 : k * 1100
     );
   });
-  barChart(songs);
 
   const datas = await downloadData("data/spotify_data.csv");
   const uniqueDate = getdate(data);
   uniqueDate.forEach((date) => {
     selection.innerHTML += `<option value="${date}">${date}</option>`;
   });
+
+  getdate(data.filter((row) => row.artists.includes("Bruno Mars")));
+  barChart(
+    getUniqueSongs(
+      data.filter((row) => row.artists.includes("Bruno Mars")),
+      true
+    )
+  );
 }
 main();
