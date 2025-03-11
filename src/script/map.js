@@ -1,7 +1,15 @@
 import downloadData from "./downloadData.js";
 import unpack from "./unpack.js";
 
-export function graphmap(rows) {
+const inp = document.getElementById("choixdate");
+export function graphmap(rows, date) {
+  rows = rows.filter(
+    (row) =>
+      row.artists.includes("Bruno Mars") &&
+      row.name.includes("Die With A Smile") &&
+      row.snapshot_date.includes(date)
+  );
+
   console.log(unpack(rows, "daily_rank"));
   const data = [
     {
@@ -12,20 +20,21 @@ export function graphmap(rows) {
       reversescale: true,
     },
   ];
-  var layout = {};
+  var layout = {
+    paper_bgcolor: "rgba(0,0,0,0)", // Fond noir pour la carte
+    plot_bgcolor: "rgba(0,0,0,0)",
+    geo: {
+      bgcolor: "rgba(0,0,0,0)",
+    },
+  };
 
   Plotly.newPlot(document.getElementById("map"), data, layout, {
     showLink: false,
   });
 }
 
-export async function getdate(rows) {
-  let dates = [];
-  rows.forEach((row) => {
-    if (dates.length == 0 || !dates.includes(row.snapshot)) {
-      dates.push(row.snapshot);
-    }
-  });
+export function getdate(rows) {
+  let dates = unpack(rows, "snapshot_date");
+  dates = Array.from(new Set(dates));
+  return dates;
 }
-
-// getdate(document.getElementById("choixdate"));

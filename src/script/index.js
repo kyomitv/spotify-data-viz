@@ -7,6 +7,8 @@ import { graphmap, getdate } from "./map.js";
 import getTrack from "./api/getTrack.js";
 import { graphOnTime, getUniqueSongs, barChart } from "./simon.js";
 
+const selection = document.getElementById("choixdate");
+
 function maxence(rows) {
   var frames = [];
   var x = unpack(rows, "snapshot_date");
@@ -127,14 +129,10 @@ async function main() {
 
   console.log(data, `Data downloaded in ${new Date() - startTime} ms`);
 
-  graphmap(
-    data.filter(
-      (row) =>
-        row.artists.includes("Bruno Mars") &&
-        row.name.includes("Die With A Smile") &&
-        row.snapshot_date.includes("2024-11-03")
-    )
-  );
+  graphmap(data, "2024-11-03");
+  selection.addEventListener("change", () => {
+    graphmap(data, selection.value);
+  });
 
   //SIMON
   graphOnTime(data.filter((row) => row.artists.includes("Bruno Mars")));
@@ -176,6 +174,13 @@ async function main() {
       window.localStorage.getItem(song.spotify_id) ? 0 : k * 1100
     );
   });
+
+  const datas = await downloadData("data/spotify_data.csv");
+  const uniqueDate = getdate(data);
+  uniqueDate.forEach((date) => {
+    selection.innerHTML += `<option value="${date}">${date}</option>`;
+  });
+
   getdate(data.filter((row) => row.artists.includes("Bruno Mars")));
   barChart(
     getUniqueSongs(
