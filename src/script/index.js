@@ -13,6 +13,9 @@ const selection = document.getElementById("choixdate");
 async function main() {
   let startTime = new Date();
   const data = await downloadData("data/spotify_data.csv");
+  console.log(data, `Data downloaded in ${new Date() - startTime} ms`);
+
+  //MAXENce
   const uniqueSongs = listeChanson(data);
   console.log(uniqueSongs);
   const selector = document.getElementById("choixChanson");
@@ -20,7 +23,6 @@ async function main() {
     selector.innerHTML += `<option value="${song}">${song}</option>`;
   });
 
-  // Ajouter un gestionnaire d'événements pour la sélection de chanson
   selector.addEventListener("change", (event) => {
     const selectedSong = event.target.value;
     const filteredData = data.filter(
@@ -35,25 +37,15 @@ async function main() {
 
   maxence(data.filter((row) => row.artists.includes("Bruno Mars")));
 
-  console.log(data, `Data downloaded in ${new Date() - startTime} ms`);
-
+  //THIBAULT
   graphmap(data, "2024-11-03");
   selection.addEventListener("change", () => {
     graphmap(data, selection.value);
   });
 
-  graphmap(
-    data.filter(
-      (row) =>
-        row.artists.includes("Bruno Mars") &&
-        row.name.includes("Die With A Smile") &&
-        row.snapshot_date.includes("2024-11-03")
-    )
-  );
+  graphmap(data, "2024-10-18");
 
-  const track = await getTrack(data[0].spotify_id);
-  console.log(track);
-
+  // SIMON
   graphOnTime(data.filter((row) => row.artists.includes("Bruno Mars")));
 
   const songs = getUniqueSongs(
@@ -61,7 +53,6 @@ async function main() {
   );
   console.log(songs);
 
-  // SIMON
   songs.forEach((song) => {
     setTimeout(
       async () => {
