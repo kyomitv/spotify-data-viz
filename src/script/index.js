@@ -70,11 +70,10 @@ async function main() {
           });
         });
       },
-      window.localStorage.getItem(song.spotify_id) ? 0 : k * 1100
+      window.localStorage.getItem(song.spotify_id) ? 0 : songs.indexOf(song) * 1100
     );
   });
 
-  const datas = await downloadData("data/spotify_data.csv");
   const uniqueDate = getdate(data);
   uniqueDate.forEach((date) => {
     selection.innerHTML += `<option value="${date}">${date}</option>`;
